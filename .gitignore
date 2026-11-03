@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Next.js build
+.next/
+out/
+
+# Environment variables (NEVER commit secrets!)
+.env*.local
+.env
+
+# IDE and editors
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Supabase temp & caches
+**/supabase/.branches/
+**/supabase/.temp/
+.temp/
+.branches/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs & debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tsbuildinfo
+
+# Next.js agent rules
+AGENTS.md
+**/AGENTS.md
