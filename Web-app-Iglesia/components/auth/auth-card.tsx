@@ -49,10 +49,10 @@ export function AuthCard() {
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="relative hidden overflow-hidden lg:block">
         <Image src="/images/hero-church.png" alt="" fill priority className="object-cover" sizes="50vw" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
         <div className="absolute inset-x-0 bottom-0 p-12 text-white">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[oklch(0.85_0.1_85)]">Salmo 133:1</p>
-          <p className="mt-4 max-w-md font-serif text-4xl italic leading-tight">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Salmo 133:1</p>
+          <p className="mt-4 max-w-md font-serif text-3xl font-normal italic leading-snug">
             {'"¡Mirad cuán bueno y cuán delicioso es habitar los hermanos juntos en armonía!"'}
           </p>
         </div>
@@ -68,18 +68,18 @@ export function AuthCard() {
         </div>
 
         <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center py-12">
-          <BrandMark className="mb-10" />
-          <h1 className="font-serif text-4xl font-medium">Bienvenido de nuevo</h1>
-          <p className="mt-2 text-muted-foreground">Ingresa con tu correo y contraseña para continuar.</p>
+          <BrandMark className="mb-8" />
+          <h1 className="font-serif text-3xl font-normal tracking-tight text-foreground">Bienvenido de nuevo</h1>
+          <p className="mt-2 text-sm text-muted-foreground">Ingresa con tu correo y contraseña para continuar.</p>
 
-          <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="email">Correo electrónico</Label>
-              <Input id="email" name="email" type="email" required autoComplete="email" className="h-11" placeholder="tu@correo.com" />
+          <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-4">
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="email" className="text-xs font-medium">Correo electrónico</Label>
+              <Input id="email" name="email" type="email" required autoComplete="email" className="h-10 rounded-lg" placeholder="tu@correo.com" />
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1.5">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Contraseña</Label>
+                <Label htmlFor="password" className="text-xs font-medium">Contraseña</Label>
               </div>
               <Input
                 id="password"
@@ -87,16 +87,16 @@ export function AuthCard() {
                 type="password"
                 required
                 autoComplete="current-password"
-                className="h-11"
+                className="h-10 rounded-lg"
               />
             </div>
 
             {(error || dataError) && (
-              <p role="alert" className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">
+              <p role="alert" className="rounded-lg bg-destructive/10 px-3 py-2 text-xs font-medium text-destructive">
                 {error || dataError}
               </p>
             )}
-            <Button type="submit" disabled={submitting} size="lg" className="h-11 rounded-full text-base">
+            <Button type="submit" disabled={submitting} size="lg" className="mt-2 h-10 rounded-xl text-sm font-medium shadow-xs">
               {submitting ? 'Verificando…' : 'Iniciar sesión'}
             </Button>
           </form>

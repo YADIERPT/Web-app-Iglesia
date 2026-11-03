@@ -187,17 +187,18 @@ function UserCard() {
   const { currentUser, logout } = useChurch()
   if (!currentUser) return null
   return (
-    <div className="flex items-center gap-3 rounded-2xl border border-sidebar-border bg-card/60 p-3">
-      <Avatar className="size-9">
-        <AvatarFallback className="bg-primary/15 text-xs font-semibold text-primary">{initials(currentUser.name)}</AvatarFallback>
+    <div className="flex items-center gap-3 rounded-xl border border-sidebar-border bg-sidebar-accent/50 p-2.5">
+      <Avatar className="size-8 rounded-lg">
+        <AvatarFallback className="rounded-lg bg-primary/10 text-xs font-medium text-primary">{initials(currentUser.name)}</AvatarFallback>
       </Avatar>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-medium">{currentUser.name}</p>
-        <p className="text-xs text-primary">{ROLE_LABELS[currentUser.role]}</p>
+        <p className="truncate text-xs font-medium text-sidebar-foreground">{currentUser.name}</p>
+        <p className="truncate text-[0.68rem] text-sidebar-primary">{ROLE_LABELS[currentUser.role]}</p>
       </div>
       <Button
         variant="ghost"
         size="icon-sm"
+        className="text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
         onClick={async () => {
           try {
             await logout()

@@ -37,32 +37,32 @@ export default async function AcercaPage() {
 
           {/* Pilares */}
           <div className="grid gap-6 md:grid-cols-3">
-            <div className="rounded-2xl border border-border bg-card p-6">
-              <div className="flex size-11 items-center justify-center rounded-xl bg-secondary text-primary">
-                <BookOpen className="size-5" aria-hidden />
+            <div className="rounded-xl border border-border/80 bg-card p-6 shadow-xs">
+              <div className="flex size-10 items-center justify-center rounded-lg border border-border/60 bg-secondary/70 text-primary">
+                <BookOpen className="size-4" aria-hidden />
               </div>
-              <h2 className="mt-4 font-serif text-xl font-semibold">Archivo histórico</h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <h2 className="mt-4 font-serif text-xl font-medium tracking-tight text-foreground">Archivo histórico</h2>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                 Preservación digital de libros, códices y documentos para consulta pública y salvaguarda de fuentes primarias.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-6">
-              <div className="flex size-11 items-center justify-center rounded-xl bg-secondary text-primary">
-                <ShieldCheck className="size-5" aria-hidden />
+            <div className="rounded-xl border border-border/80 bg-card p-6 shadow-xs">
+              <div className="flex size-10 items-center justify-center rounded-lg border border-border/60 bg-secondary/70 text-primary">
+                <ShieldCheck className="size-4" aria-hidden />
               </div>
-              <h2 className="mt-4 font-serif text-xl font-semibold">Patrimonio catalogado</h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <h2 className="mt-4 font-serif text-xl font-medium tracking-tight text-foreground">Patrimonio catalogado</h2>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                 Registro sistemático de bienes muebles, imágenes y piezas sagradas bajo rigurosos criterios de conservación.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-6">
-              <div className="flex size-11 items-center justify-center rounded-xl bg-secondary text-primary">
-                <Church className="size-5" aria-hidden />
+            <div className="rounded-xl border border-border/80 bg-card p-6 shadow-xs">
+              <div className="flex size-10 items-center justify-center rounded-lg border border-border/60 bg-secondary/70 text-primary">
+                <Church className="size-4" aria-hidden />
               </div>
-              <h2 className="mt-4 font-serif text-xl font-semibold">Comunidad viva</h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <h2 className="mt-4 font-serif text-xl font-medium tracking-tight text-foreground">Comunidad viva</h2>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                 Información actualizada de horarios litúrgicos, celebraciones, festividades patronales y servicios de cada sede.
               </p>
             </div>
