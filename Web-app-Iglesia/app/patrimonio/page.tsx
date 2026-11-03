@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { EmptyState, Monogram, PageIntro, PublicShell } from '@/components/site/public-shell'
+import { EmptyState, PageIntro, PublicShell } from '@/components/site/public-shell'
 import { ChurchFilterSelect } from '@/components/site/church-filter-select'
+import { SafeImage } from '@/components/ui/safe-image'
 import { getChurches, getHeritageObjects, getSaints } from '@/lib/data'
 
 export const metadata: Metadata = {
@@ -104,25 +105,22 @@ export default async function PatrimonioPage({
                       <Link
                         key={item.id}
                         href={`/iglesias/${church?.slug}/patrimonio/${item.id}`}
-                        className="group overflow-hidden rounded-2xl border border-border bg-card transition-all duration-200 hover:-translate-y-0.5 hover:border-primary"
+                        className="group overflow-hidden rounded-xl border border-border/80 bg-card transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/80 hover:shadow-xs"
                       >
-                        <div className="aspect-[4/5] w-full overflow-hidden bg-secondary">
-                          {item.coverPath ? (
-                            <img
-                              src={item.coverPath}
-                              alt={item.name}
-                              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            />
-                          ) : (
-                            <Monogram name={item.name} />
-                          )}
-                        </div>
+                        <SafeImage
+                          src={item.coverPath}
+                          alt={item.name}
+                          fallbackText={item.name}
+                          fallbackCategory="patrimonio"
+                          aspectRatioClass="aspect-[4/3]"
+                          className="transition-transform duration-500 group-hover:scale-105"
+                        />
                         <div className="p-5">
                           <div className="flex items-center justify-between text-xs text-gold-text uppercase tracking-wider">
                             <span>{item.category || 'Objeto sacro'}</span>
                             {item.quantity > 1 && <span>Cant: {item.quantity}</span>}
                           </div>
-                          <h3 className="mt-2 font-serif text-2xl font-semibold leading-tight group-hover:text-primary transition-colors">
+                          <h3 className="mt-2 font-serif text-xl font-medium leading-tight group-hover:text-primary transition-colors">
                             {item.name}
                           </h3>
                           <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
@@ -160,19 +158,16 @@ export default async function PatrimonioPage({
                       <Link
                         key={item.id}
                         href={`/iglesias/${church?.slug}/santos/${item.id}`}
-                        className="group overflow-hidden rounded-2xl border border-border bg-card transition-all duration-200 hover:-translate-y-0.5 hover:border-primary"
+                        className="group overflow-hidden rounded-xl border border-border/80 bg-card transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/80 hover:shadow-xs"
                       >
-                        <div className="aspect-[4/5] w-full overflow-hidden bg-secondary">
-                          {item.coverPath ? (
-                            <img
-                              src={item.coverPath}
-                              alt={item.name}
-                              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            />
-                          ) : (
-                            <Monogram name={item.name} />
-                          )}
-                        </div>
+                        <SafeImage
+                          src={item.coverPath}
+                          alt={item.name}
+                          fallbackText={item.name}
+                          fallbackCategory="santo"
+                          aspectRatioClass="aspect-[4/3]"
+                          className="transition-transform duration-500 group-hover:scale-105"
+                        />
                         <div className="p-5">
                           <div className="flex items-center justify-between text-xs text-gold-text uppercase tracking-wider">
                             <span>{item.kind || 'Imagen devocional'}</span>
@@ -180,7 +175,7 @@ export default async function PatrimonioPage({
                               <span>Fiesta: {item.feastDayDay}/{item.feastDayMonth}</span>
                             )}
                           </div>
-                          <h3 className="mt-2 font-serif text-2xl font-semibold leading-tight group-hover:text-primary transition-colors">
+                          <h3 className="mt-2 font-serif text-xl font-medium leading-tight group-hover:text-primary transition-colors">
                             {item.name}
                           </h3>
                           {item.invocation && (

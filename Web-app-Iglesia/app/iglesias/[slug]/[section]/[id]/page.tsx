@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Calendar, Tag } from 'lucide-react'
-import { Monogram, PageIntro, PublicShell } from '@/components/site/public-shell'
+import { PageIntro, PublicShell } from '@/components/site/public-shell'
+import { SafeImage } from '@/components/ui/safe-image'
 import { getChurchBySlug, getHeritageObjects, getSaints } from '@/lib/data'
 
 export async function generateMetadata({
@@ -62,18 +63,15 @@ export default async function ChurchRecordPage({
 
           {/* Ficha visual y datos */}
           <div className="grid gap-8 md:grid-cols-2">
-            <div className="overflow-hidden rounded-2xl border border-border bg-card">
-              <div className="aspect-[4/5] w-full bg-secondary">
-                {record.coverPath ? (
-                  <img
-                    src={record.coverPath}
-                    alt={record.name}
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <Monogram name={record.name} />
-                )}
-              </div>
+            <div className="overflow-hidden rounded-xl border border-border/80 bg-card shadow-xs">
+              <SafeImage
+                src={record.coverPath}
+                alt={record.name}
+                fallbackText={record.name}
+                fallbackCategory={isSaint ? 'santo' : 'patrimonio'}
+                aspectRatioClass="aspect-[4/3] md:aspect-[4/5]"
+                className="transition-transform duration-500 hover:scale-102"
+              />
             </div>
 
             <div className="flex flex-col justify-between space-y-6">

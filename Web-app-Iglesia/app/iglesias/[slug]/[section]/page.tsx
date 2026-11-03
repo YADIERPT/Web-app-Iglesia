@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Download, ExternalLink, FileText } from 'lucide-react'
-import { EmptyState, Monogram, PageIntro, PublicShell } from '@/components/site/public-shell'
+import { EmptyState, PageIntro, PublicShell } from '@/components/site/public-shell'
+import { SafeImage } from '@/components/ui/safe-image'
 import { getChurchBySlug, getHeritageObjects, getSaints, listDocuments } from '@/lib/data'
 
 const SECTION_COPY: Record<string, { title: string; description: string }> = {
@@ -35,8 +36,70 @@ export default async function ChurchSectionPage({ params }: { params: Promise<{ 
               </p>
             </article>
           )}
-          {section === 'patrimonio' && (objects.length === 0 ? <EmptyState>Aún no hay registros públicos de patrimonio.</EmptyState> : <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{objects.filter((object) => object.status === 'publicado' && object.visibility === 'publico').map((object) => <Link key={object.id} href={`/iglesias/${church.slug}/patrimonio/${object.id}`} className="overflow-hidden rounded-xl border border-border bg-card transition-transform hover:-translate-y-0.5 hover:border-primary">{object.coverPath ? <div className="aspect-[4/3] w-full overflow-hidden bg-secondary"><img src={object.coverPath} alt={object.name} className="h-full w-full object-cover" /></div> : <Monogram name={object.name} />}<div className="p-5"><h2 className="font-serif text-2xl font-semibold">{object.name}</h2><p className="mt-2 text-sm text-muted-foreground">{object.description}</p></div></Link>)}</div>)}
-          {section === 'santos' && (saints.length === 0 ? <EmptyState>Aún no hay santos o imágenes publicados.</EmptyState> : <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{saints.filter((saint) => saint.status === 'publicado' && saint.visibility === 'publico').map((saint) => <Link key={saint.id} href={`/iglesias/${church.slug}/santos/${saint.id}`} className="overflow-hidden rounded-xl border border-border bg-card transition-transform hover:-translate-y-0.5 hover:border-primary">{saint.coverPath ? <div className="aspect-[4/3] w-full overflow-hidden bg-secondary"><img src={saint.coverPath} alt={saint.name} className="h-full w-full object-cover" /></div> : <Monogram name={saint.name} />}<div className="p-5"><h2 className="font-serif text-2xl font-semibold">{saint.name}</h2><p className="mt-2 text-sm text-muted-foreground">{saint.description}</p></div></Link>)}</div>)}
+          {section === 'patrimonio' && (
+            objects.length === 0 ? (
+              <EmptyState>Aún no hay registros públicos de patrimonio.</EmptyState>
+            ) : (
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {objects
+                  .filter((object) => object.status === 'publicado' && object.visibility === 'publico')
+                  .map((object) => (
+                    <Link
+                      key={object.id}
+                      href={`/iglesias/${church.slug}/patrimonio/${object.id}`}
+                      className="group overflow-hidden rounded-xl border border-border/80 bg-card transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/80 hover:shadow-xs"
+                    >
+                      <SafeImage
+                        src={object.coverPath}
+                        alt={object.name}
+                        fallbackText={object.name}
+                        fallbackCategory="patrimonio"
+                        aspectRatioClass="aspect-[4/3]"
+                        className="transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="p-5">
+                        <h2 className="font-serif text-xl font-medium leading-tight group-hover:text-primary transition-colors">{object.name}</h2>
+                        {object.description && (
+                          <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{object.description}</p>
+                        )}
+                      </div>
+                    </Link>
+                  ))}
+              </div>
+            )
+          )}
+          {section === 'santos' && (
+            saints.length === 0 ? (
+              <EmptyState>Aún no hay santos o imágenes publicados.</EmptyState>
+            ) : (
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {saints
+                  .filter((saint) => saint.status === 'publicado' && saint.visibility === 'publico')
+                  .map((saint) => (
+                    <Link
+                      key={saint.id}
+                      href={`/iglesias/${church.slug}/santos/${saint.id}`}
+                      className="group overflow-hidden rounded-xl border border-border/80 bg-card transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/80 hover:shadow-xs"
+                    >
+                      <SafeImage
+                        src={saint.coverPath}
+                        alt={saint.name}
+                        fallbackText={saint.name}
+                        fallbackCategory="santo"
+                        aspectRatioClass="aspect-[4/3]"
+                        className="transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="p-5">
+                        <h2 className="font-serif text-xl font-medium leading-tight group-hover:text-primary transition-colors">{saint.name}</h2>
+                        {saint.description && (
+                          <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{saint.description}</p>
+                        )}
+                      </div>
+                    </Link>
+                  ))}
+              </div>
+            )
+          )}
           {section === 'archivo' && (documents.length === 0 ? <EmptyState>Aún no hay documentos públicos.</EmptyState> : <div className="grid gap-4 md:grid-cols-2">{documents.filter((document) => document.status === 'publicado' && document.visibility === 'publico').map((document) => <article key={document.id} className="rounded-xl border border-border bg-card p-6"><FileText className="size-6 text-primary" aria-hidden /><h2 className="mt-5 font-serif text-2xl font-semibold">{document.title}</h2>{document.docType && <p className="mt-2 text-xs uppercase tracking-[0.12em] text-gold-text">{document.docType}</p>}<p className="mt-3 text-sm text-muted-foreground">{document.description}</p><div className="mt-5 flex flex-wrap gap-4"><a href={document.filePath} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-gold-text hover:underline">Abrir <ExternalLink className="size-3.5" aria-hidden /></a><a href={document.filePath} download className="inline-flex items-center gap-2 text-sm font-semibold text-gold-text hover:underline">Descargar <Download className="size-3.5" aria-hidden /></a></div></article>)}</div>)}
           {!['historia', 'patrimonio', 'santos', 'archivo'].includes(section) && <EmptyState>Este contenido se cargará desde el panel cuando existan registros publicados.</EmptyState>}
         </div>

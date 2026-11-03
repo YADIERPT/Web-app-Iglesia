@@ -13,7 +13,8 @@ import {
   MapPin,
   ReceiptText,
 } from 'lucide-react'
-import { Monogram, PageIntro, PublicShell } from '@/components/site/public-shell'
+import { PageIntro, PublicShell } from '@/components/site/public-shell'
+import { SafeImage } from '@/components/ui/safe-image'
 import {
   getChurchBySlug,
   getMassSchedules,
@@ -93,37 +94,34 @@ export default async function ChurchPage({
         <div className="mx-auto max-w-5xl space-y-16">
           {/* Ficha principal con foto, historia y mapa */}
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="overflow-hidden rounded-2xl border border-border bg-card">
-              {church.coverPath ? (
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-secondary">
-                  <img
-                    src={church.coverPath}
-                    alt={church.name}
-                    className="size-full object-cover"
-                  />
-                </div>
-              ) : (
-                <Monogram name={church.name} />
-              )}
+            <div className="overflow-hidden rounded-xl border border-border/80 bg-card shadow-xs">
+              <SafeImage
+                src={church.coverPath}
+                alt={church.name}
+                fallbackText={church.name}
+                fallbackCategory="church"
+                aspectRatioClass="aspect-[4/3]"
+                className="transition-transform duration-500 hover:scale-102"
+              />
             </div>
 
             <div className="flex flex-col justify-between">
               <div>
-                {/* Detalle decorativo con acento sutil (§5.9) */}
+                {/* Detalle decorativo con acento sutil */}
                 <div
-                  className="mb-4 h-1 w-16 rounded-full"
+                  className="mb-4 h-0.5 w-10 rounded-full"
                   style={{ backgroundColor: church.accentColor ?? 'var(--primary)' }}
                   aria-hidden
                 />
-                <h2 className="font-serif text-3xl font-semibold">Reseña histórica</h2>
+                <h2 className="font-serif text-3xl font-normal tracking-tight text-foreground">Reseña histórica</h2>
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                   {church.historySummary || 'La reseña histórica de esta sede se encuentra en proceso de catalogación.'}
                 </p>
 
-                <div className="mt-4">
+                <div className="mt-5">
                   <Link
                     href={`/iglesias/${church.slug}/historia`}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary hover:underline"
                   >
                     Leer la historia completa
                     <ArrowRight className="size-3.5" aria-hidden />
@@ -131,7 +129,7 @@ export default async function ChurchPage({
                 </div>
               </div>
 
-              <div className="mt-8 border-t border-border pt-6">
+              <div className="mt-8 border-t border-border/70 pt-6">
                 <p className="flex items-start gap-2.5 text-sm text-muted-foreground">
                   <MapPin className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
                   <span>{church.address ?? 'Centro Histórico, Mérida, Yucatán'}</span>
@@ -141,7 +139,7 @@ export default async function ChurchPage({
                     href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
                   >
                     Cómo llegar en Google Maps
                     <ExternalLink className="size-3" aria-hidden />
@@ -151,23 +149,23 @@ export default async function ChurchPage({
             </div>
           </div>
 
-          {/* Navegación secundaria entre secciones de la iglesia (§5.7) */}
+          {/* Navegación secundaria entre secciones de la iglesia */}
           <div>
-            <h3 className="font-serif text-2xl font-semibold mb-6">Contenido y acervo de la iglesia</h3>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <h3 className="font-serif text-2xl font-normal tracking-tight mb-6 text-foreground">Contenido y acervo de la iglesia</h3>
+            <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
               {SECTIONS.map((sec) => {
                 const Icon = sec.icon
                 return (
                   <Link
                     key={sec.slug}
                     href={`/iglesias/${church.slug}/${sec.slug}`}
-                    className="group flex min-h-16 items-center justify-between rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary"
+                    className="group flex min-h-14 items-center justify-between rounded-xl border border-border/80 bg-card p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/80 hover:shadow-xs"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="flex size-10 items-center justify-center rounded-lg bg-secondary text-primary">
-                        <Icon className="size-5" aria-hidden />
+                      <div className="flex size-9 items-center justify-center rounded-lg border border-border/60 bg-secondary/70 text-primary">
+                        <Icon className="size-4" aria-hidden />
                       </div>
-                      <span className="font-medium">{sec.label}</span>
+                      <span className="text-sm font-medium">{sec.label}</span>
                     </div>
                     <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" aria-hidden />
                   </Link>

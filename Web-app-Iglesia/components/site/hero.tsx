@@ -37,59 +37,55 @@ export function Hero() {
         className="object-cover opacity-90 dark:opacity-60"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/40 to-transparent" />
-      <div
-        aria-hidden
-        className="animate-glow pointer-events-none absolute -top-40 right-0 h-[40rem] w-[40rem] rounded-full bg-primary/20 blur-[120px]"
-      />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/75 to-background/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
 
       <div className="relative mx-auto w-full max-w-7xl px-6">
         <div className="max-w-3xl">
-          <p className="animate-in fade-in slide-in-from-bottom-4 mb-6 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary duration-1000 sm:tracking-[0.35em]">
-            <span className="h-px w-10 bg-primary" />
+          <p className="animate-in fade-in slide-in-from-bottom-4 mb-6 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-primary duration-700">
+            <span className="h-px w-8 bg-primary/70" />
             Bienvenido a casa
           </p>
-          <h1 className="animate-in fade-in slide-in-from-bottom-6 font-serif text-5xl font-medium leading-[1.02] tracking-tight duration-1000 md:text-7xl lg:text-8xl">
+          <h1 className="animate-in fade-in slide-in-from-bottom-6 font-serif text-5xl font-normal leading-[1.08] tracking-tight duration-700 md:text-7xl lg:text-8xl">
             {taglineLead && `${taglineLead} `}
-            <em className="text-gold-gradient animate-shimmer font-normal">{taglineHighlight}</em>
+            <em className="text-gold-gradient font-normal not-italic">{taglineHighlight}</em>
           </h1>
           {settings.mission && (
-            <p className="animate-in fade-in slide-in-from-bottom-8 mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground duration-1000 md:text-xl">
+            <p className="animate-in fade-in slide-in-from-bottom-8 mt-7 max-w-xl text-base leading-relaxed text-muted-foreground duration-700 md:text-lg">
               {settings.mission}
             </p>
           )}
 
-          <div className="animate-in fade-in slide-in-from-bottom-10 mt-10 flex flex-wrap items-center gap-4 duration-1000">
-            <a href="#horarios" className={cn(buttonVariants({ size: 'lg' }), 'h-12 rounded-full px-7 text-base shadow-[0_10px_40px_-10px_var(--gold)]')}>
+          <div className="animate-in fade-in slide-in-from-bottom-10 mt-9 flex flex-wrap items-center gap-4 duration-700">
+            <a href="#horarios" className={cn(buttonVariants({ size: 'lg' }), 'h-11 rounded-xl px-6 text-sm font-medium shadow-xs transition-transform duration-200 hover:-translate-y-0.5')}>
               Planea tu visita
             </a>
-            <a href="#eventos" className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'h-12 rounded-full bg-background/40 px-7 text-base backdrop-blur')}>
+            <a href="#eventos" className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'h-11 rounded-xl border-border/80 bg-background/50 px-6 text-sm font-medium backdrop-blur-xs transition-colors hover:bg-secondary/60')}>
               Próximos eventos
             </a>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-6 border-t border-border/60 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 flex flex-col gap-6 border-t border-border/70 pt-8 sm:flex-row sm:items-center sm:justify-between">
           {nextService && (
             <div className="flex items-center gap-4">
-              <span className="font-serif text-5xl text-primary">{formatTime(nextService.time)}</span>
-              <span className="text-sm leading-snug text-muted-foreground">
+              <span className="font-serif text-4xl font-normal text-primary">{formatTime(nextService.time)}</span>
+              <span className="text-xs uppercase tracking-wider leading-snug text-muted-foreground">
                 Cada {nextService.day.toLowerCase()}
                 <br />
-                <span className="text-foreground">{nextService.name}</span>
+                <span className="font-medium text-foreground">{nextService.name}</span>
               </span>
             </div>
           )}
           {settings.address && (
-            <p className="flex items-center gap-2 text-sm text-muted-foreground">
-              <MapPin className="size-4 text-primary" aria-hidden />
+            <p className="flex items-center gap-2 text-xs text-muted-foreground">
+              <MapPin className="size-3.5 text-primary" aria-hidden />
               {settings.address}
             </p>
           )}
-          <a href="#nosotros" className="hidden items-center gap-2 text-sm text-muted-foreground hover:text-foreground sm:flex">
+          <a href="#nosotros" className="hidden items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground sm:flex">
             Descubre más
-            <ArrowDown className="animate-float size-4" aria-hidden />
+            <ArrowDown className="size-3.5 text-primary" aria-hidden />
           </a>
         </div>
       </div>
