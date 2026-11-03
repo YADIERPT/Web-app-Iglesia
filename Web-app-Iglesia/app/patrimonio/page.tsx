@@ -23,8 +23,11 @@ export default async function PatrimonioPage({
 
   const activeCategory = categoria === 'santos' ? 'santos' : categoria === 'objetos' ? 'objetos' : 'todos'
 
-  const filteredObjects = objects.filter((o) => !iglesia || o.churchId === iglesia)
-  const filteredSaints = saints.filter((s) => !iglesia || s.churchId === iglesia)
+  const selectedChurch = churches.find((c) => c.id === iglesia || c.slug === iglesia)
+  const selectedChurchId = selectedChurch?.id ?? iglesia
+
+  const filteredObjects = objects.filter((o) => !iglesia || o.churchId === selectedChurchId)
+  const filteredSaints = saints.filter((s) => !iglesia || s.churchId === selectedChurchId)
 
   const churchMap = new Map(churches.map((c) => [c.id, c]))
   const churchParam = iglesia ? `&iglesia=${encodeURIComponent(iglesia)}` : ''
@@ -76,7 +79,7 @@ export default async function PatrimonioPage({
             {/* Selector interactivo de iglesia (Client Component) */}
             <ChurchFilterSelect
               churches={churches.map((c) => ({ id: c.id, name: c.name }))}
-              selectedChurch={iglesia}
+              selectedChurch={selectedChurch?.id ?? iglesia}
               category={activeCategory}
             />
           </div>

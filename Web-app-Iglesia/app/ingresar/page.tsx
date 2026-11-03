@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { AuthCard } from '@/components/auth/auth-card'
 
 export const metadata: Metadata = {
-  title: 'Ingresar | Iglesia Luz de Gracia',
+  title: 'Ingresar | Archivo Iglesias de Mérida',
 }
 
 export default function LoginPage() {
