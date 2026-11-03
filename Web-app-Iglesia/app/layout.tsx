@@ -7,14 +7,17 @@ import './globals.css'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
   variable: '--font-cormorant',
+  display: 'swap',
 })
 
 const manrope = Manrope({
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-manrope',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -23,7 +26,7 @@ export const metadata: Metadata = {
     'Archivo digital del patrimonio religioso de Mérida, Yucatán.',
   icons: {
     icon: [
-      { url: '/placeholder-user.jpg' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
     ],
   },
 }

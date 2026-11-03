@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <rect width="48" height="48" rx="12" fill="#14110F"/>
+  <!-- Campanario / Arco arquitectónico estilizado -->
+  <path d="M24 8V16M20 12H28" stroke="#C9A55C" stroke-width="2" stroke-linecap="round"/>
+  <path d="M14 40V24C14 18.4772 18.4772 14 24 14C29.5228 14 34 18.4772 34 24V40" stroke="#C9A55C" stroke-width="2" stroke-linecap="round"/>
+  <path d="M19 40V26C19 23.2386 21.2386 21 24 21C26.7614 21 29 23.2386 29 26V40" stroke="#FAF6EE" stroke-width="1.75" stroke-linecap="round"/>
+  <circle cx="24" cy="27" r="1.5" fill="#C9A55C"/>
+  <line x1="10" y1="40" x2="38" y2="40" stroke="#C9A55C" stroke-width="2" stroke-linecap="round"/>
+</svg>
